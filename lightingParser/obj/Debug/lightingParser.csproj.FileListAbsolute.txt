@@ -1,0 +1,18 @@
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\bin\Debug\lightingParser.exe.config
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\bin\Debug\lightingParser.exe
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\bin\Debug\lightingParser.pdb
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.csprojResolveAssemblyReference.cache
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.Form1.resources
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.Properties.Resources.resources
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.csproj.GenerateResource.Cache
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.exe
+\\data1\users\davidcorrigan\documents\visual studio 2013\Projects\lightingParser\lightingParser\obj\Debug\lightingParser.pdb
+C:\Users\David\Documents\lightingParser\lightingParser\bin\Debug\lightingParser.exe.config
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.exe
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.pdb
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.Form1.resources
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.Properties.Resources.resources
+C:\Users\David\Documents\lightingParser\lightingParser\obj\Debug\lightingParser.csproj.GenerateResource.Cache
+C:\Users\David\Documents\lightingParser\lightingParser\bin\Debug\lightingParser.exe
+C:\Users\David\Documents\lightingParser\lightingParser\bin\Debug\lightingParser.pdb
