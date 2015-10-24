@@ -42,6 +42,9 @@
             this.EnterBtn = new System.Windows.Forms.Button();
             this.ExitBtn = new System.Windows.Forms.Button();
             this.HelpBtn = new System.Windows.Forms.Button();
+            this.QueryIDBtn = new System.Windows.Forms.Button();
+            this.QueryIDNumeric = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox2
@@ -169,11 +172,40 @@
             this.HelpBtn.UseVisualStyleBackColor = true;
             this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
+            // QueryIDBtn
+            // 
+            this.QueryIDBtn.Location = new System.Drawing.Point(623, 610);
+            this.QueryIDBtn.Name = "QueryIDBtn";
+            this.QueryIDBtn.Size = new System.Drawing.Size(75, 23);
+            this.QueryIDBtn.TabIndex = 14;
+            this.QueryIDBtn.Text = "Query ID";
+            this.QueryIDBtn.UseVisualStyleBackColor = true;
+            this.QueryIDBtn.Click += new System.EventHandler(this.QueryIDBtn_Click);
+            // 
+            // QueryIDNumeric
+            // 
+            this.QueryIDNumeric.Location = new System.Drawing.Point(623, 640);
+            this.QueryIDNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.QueryIDNumeric.Name = "QueryIDNumeric";
+            this.QueryIDNumeric.Size = new System.Drawing.Size(120, 20);
+            this.QueryIDNumeric.TabIndex = 15;
+            this.QueryIDNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1344, 720);
+            this.Controls.Add(this.QueryIDNumeric);
+            this.Controls.Add(this.QueryIDBtn);
             this.Controls.Add(this.HelpBtn);
             this.Controls.Add(this.ExitBtn);
             this.Controls.Add(this.DeleteBtn);
@@ -190,6 +222,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +243,8 @@
         private System.Windows.Forms.Button EnterBtn;
         private System.Windows.Forms.Button ExitBtn;
         private System.Windows.Forms.Button HelpBtn;
+        private System.Windows.Forms.Button QueryIDBtn;
+        private System.Windows.Forms.NumericUpDown QueryIDNumeric;
     }
 }
 
