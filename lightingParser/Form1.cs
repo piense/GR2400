@@ -213,5 +213,10 @@ namespace lightingParser
         {
             lightingInterface.Help();
         }
+
+        private void QueryIDBtn_Click(object sender, EventArgs e)
+        {
+            lightingInterface.QueryID((int)QueryIDNumeric.Value);
+        }
     }
 }
