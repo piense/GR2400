@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace lightingParser
 {
@@ -29,6 +30,11 @@ namespace lightingParser
             Title = title;
             Description = description;
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 
     public class UdpState
@@ -47,13 +53,25 @@ namespace lightingParser
     public class GR2400IPInterface
     {
 
-        public List<dataLog> LightingDataLog;
+        public BindingList<dataLog> LightingDataLog;
 
         public event EventHandler NewMessage;
 
         IPEndPoint receiveEndpoint;
         IPEndPoint serverEndpoint;
         UdpClient udpClient;
+
+        bool checkForMatch(byte[] array1, byte[] array2, int start)
+        {
+            if (array1.Length < (start + array2.Length))
+                return false;
+
+            for (int i = 0; i < array2.Length; i++)
+                if (array1[start + i] != array2[i])
+                    return false;
+
+            return true;
+        }
 
         private void OnNewMessage(IAsyncResult ar)
         {
@@ -63,12 +81,18 @@ namespace lightingParser
             Byte[] receiveBytes = u.EndReceive(ar, ref e);
             string receiveString = Encoding.ASCII.GetString(receiveBytes);
 
-            dataLog logEntry = new dataLog(null, receiveBytes, "", "");
+            dataLog logEntry = new dataLog(null, receiveBytes, "Unknown", "Unknown");
 
-            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x46, 0x38, 0x30, 0x31, 0x43, 0x31, 0x46, 0x42, 0x0d }))
+            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x30, 0x30, 0x30, 0x31, 0x43, 0x30, 0x30, 0x32, 0x0D }))
             {
                 logEntry.Title = "Heartbeat";
-                logEntry.Description = "Heartbeat from GR2400 system.";
+                logEntry.Description = "Heartbeat from GR2400 system";
+            }
+
+            if (checkForMatch(receiveBytes,new byte[4] { 0x33, 0x38, 0x30, 0x34},0))
+            {
+                logEntry.Title = "Device found";
+                logEntry.Description = "Device of some sort has been detected.";
             }
 
             LightingDataLog.Add(logEntry);
@@ -146,11 +170,8 @@ namespace lightingParser
         public string QueryID(int id)
         {
             string ToSend = "3820" + (char)0x0d + "37" + id.ToString("x2") + ((int)((55 + id) % 255)).ToString("x2") + (char)0x0d + (char)0x0a;
-            byte[] sendbuf = Encoding.ASCII.GetBytes(ToSend);
 
-            if (udpClient != null && serverEndpoint != null)
-                udpClient.Send(sendbuf, sendbuf.Length, serverEndpoint);
-
+            sendData(ToSend, "Query ID " + id.ToString(), "Query ID " + id.ToString());
 
             //byte[] retBuf = udpClient.Receive(ref receiveEndpoint);
             //MessageBox.Show(System.Text.Encoding.ASCII.GetString(retBuf));
@@ -186,29 +207,16 @@ namespace lightingParser
             s.e = receiveEndpoint;
             s.u = udpClient;
 
-            RequestLCDData();
+            serverEndpoint = new IPEndPoint(IPAddress.Parse("10.1.4.152"), 10001);
+
+            QueryLCDData();
 
             udpClient.BeginReceive(new AsyncCallback(OnNewMessage), s);
         }
 
-        public void RequestLCDData()
-        {
-            byte[] sendbuf = Encoding.ASCII.GetBytes("38d0" + (char)0x0d + "38d108" + (char)0x0d + "380600ff3d" + (char)0x0d + (char)0x0a);
-
-            try
-            {
-                serverEndpoint = new IPEndPoint(IPAddress.Parse("10.1.4.152"), 10001);
-                udpClient.Send(sendbuf, sendbuf.Length, serverEndpoint);
-            }
-            catch (Exception a)
-            {
-                MessageBox.Show(a.ToString());
-            }
-        }
-
         public GR2400IPInterface()
         {
-            LightingDataLog = new List<dataLog>();
+            LightingDataLog = new BindingList<dataLog>();
             beginListening();
         }
     }

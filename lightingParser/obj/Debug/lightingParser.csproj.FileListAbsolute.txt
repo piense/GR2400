@@ -25,3 +25,12 @@ C:\Users\davidcorrigan\Desktop\GitHub\GR2400\lightingParser\obj\Debug\lightingPa
 C:\Users\davidcorrigan\Desktop\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.Form1.resources
 C:\Users\davidcorrigan\Desktop\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.Properties.Resources.resources
 C:\Users\davidcorrigan\Desktop\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.csproj.GenerateResource.Cache
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.Form1.resources
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.Properties.Resources.resources
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.csproj.GenerateResource.Cache
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.exe
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\bin\Debug\lightingParser.exe.config
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\bin\Debug\lightingParser.exe
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\bin\Debug\lightingParser.pdb
+C:\Users\David\Documents\GitHub\GR2400\lightingParser\obj\Debug\lightingParser.pdb

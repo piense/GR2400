@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.ScrollUpBtn = new System.Windows.Forms.Button();
             this.ScrollDownBtn = new System.Windows.Forms.Button();
             this.TabDownBtn = new System.Windows.Forms.Button();
@@ -44,17 +40,12 @@
             this.HelpBtn = new System.Windows.Forms.Button();
             this.QueryIDBtn = new System.Windows.Forms.Button();
             this.QueryIDNumeric = new System.Windows.Forms.NumericUpDown();
+            this.dataListBox = new System.Windows.Forms.ListBox();
+            this.dataTitlelbl = new System.Windows.Forms.Label();
+            this.dataTextBox = new System.Windows.Forms.TextBox();
+            this.dataDescriptionTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(47, 298);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(732, 221);
-            this.textBox2.TabIndex = 1;
             // 
             // button1
             // 
@@ -74,24 +65,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(357, 176);
             this.textBox3.TabIndex = 3;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(821, 21);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(468, 527);
-            this.textBox4.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(47, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(732, 211);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // ScrollUpBtn
             // 
@@ -199,11 +172,52 @@
             0,
             0});
             // 
+            // dataListBox
+            // 
+            this.dataListBox.FormattingEnabled = true;
+            this.dataListBox.Location = new System.Drawing.Point(12, 12);
+            this.dataListBox.Name = "dataListBox";
+            this.dataListBox.Size = new System.Drawing.Size(224, 381);
+            this.dataListBox.TabIndex = 16;
+            this.dataListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // dataTitlelbl
+            // 
+            this.dataTitlelbl.AutoSize = true;
+            this.dataTitlelbl.Location = new System.Drawing.Point(243, 13);
+            this.dataTitlelbl.Name = "dataTitlelbl";
+            this.dataTitlelbl.Size = new System.Drawing.Size(35, 13);
+            this.dataTitlelbl.TabIndex = 17;
+            this.dataTitlelbl.Text = "label1";
+            // 
+            // dataTextBox
+            // 
+            this.dataTextBox.Location = new System.Drawing.Point(246, 223);
+            this.dataTextBox.Multiline = true;
+            this.dataTextBox.Name = "dataTextBox";
+            this.dataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataTextBox.Size = new System.Drawing.Size(404, 170);
+            this.dataTextBox.TabIndex = 18;
+            this.dataTextBox.TextChanged += new System.EventHandler(this.dataTextBox_TextChanged);
+            // 
+            // dataDescriptionTextBox
+            // 
+            this.dataDescriptionTextBox.Location = new System.Drawing.Point(246, 39);
+            this.dataDescriptionTextBox.Multiline = true;
+            this.dataDescriptionTextBox.Name = "dataDescriptionTextBox";
+            this.dataDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataDescriptionTextBox.Size = new System.Drawing.Size(404, 178);
+            this.dataDescriptionTextBox.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 720);
+            this.ClientSize = new System.Drawing.Size(1284, 752);
+            this.Controls.Add(this.dataDescriptionTextBox);
+            this.Controls.Add(this.dataTextBox);
+            this.Controls.Add(this.dataTitlelbl);
+            this.Controls.Add(this.dataListBox);
             this.Controls.Add(this.QueryIDNumeric);
             this.Controls.Add(this.QueryIDBtn);
             this.Controls.Add(this.HelpBtn);
@@ -214,11 +228,8 @@
             this.Controls.Add(this.TabUpBtn);
             this.Controls.Add(this.ScrollDownBtn);
             this.Controls.Add(this.ScrollUpBtn);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -230,11 +241,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ScrollUpBtn;
         private System.Windows.Forms.Button ScrollDownBtn;
         private System.Windows.Forms.Button TabDownBtn;
@@ -245,6 +253,10 @@
         private System.Windows.Forms.Button HelpBtn;
         private System.Windows.Forms.Button QueryIDBtn;
         private System.Windows.Forms.NumericUpDown QueryIDNumeric;
+        private System.Windows.Forms.ListBox dataListBox;
+        private System.Windows.Forms.Label dataTitlelbl;
+        private System.Windows.Forms.TextBox dataTextBox;
+        private System.Windows.Forms.TextBox dataDescriptionTextBox;
     }
 }
 

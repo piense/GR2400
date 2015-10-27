@@ -14,6 +14,7 @@ namespace lightingParser
     {
         string LCDString;
         public GR2400IPInterface lightingInterface;
+        BindingSource bs;
 
         delegate void SetTextCallback(string text);
 
@@ -22,40 +23,8 @@ namespace lightingParser
             InitializeComponent();
         }
 
-        public void SetText(string text)
-        {
-            textBox4.Text = text;
-        }
-
-        public void SetText1(string text)
-        {
-            textBox2.Text = text;
-            updateLCDBox();
-        }
-
         public void MessageReceived(object sender, EventArgs e)
         {
-            if (this.textBox4.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { ((MessageEventArgs)e).Message });
-            }
-            else
-            {
-                this.textBox4.Text = ((MessageEventArgs)e).Message;
-            }
-
-            string ret = LCDtext(((MessageEventArgs)e).MessageBytes);
-
-            if (this.textBox1.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText1);
-                this.Invoke(d, new object[] { ret });
-            }
-            else
-            {
-                this.textBox1.Text = ret;
-            }
 
         }
 
@@ -64,6 +33,9 @@ namespace lightingParser
             LCDString = "                                                                                                                                                                                                                                                                                                                                                                                                              ";
             lightingInterface = new GR2400IPInterface();
             lightingInterface.NewMessage += MessageReceived;
+            bs = new BindingSource();
+            bs.DataSource = lightingInterface.LightingDataLog;
+            dataListBox.DataSource = bs;
         }
 
         bool checkForMatch(byte[]array1 , byte[]array2, int start)
@@ -217,6 +189,22 @@ namespace lightingParser
         private void QueryIDBtn_Click(object sender, EventArgs e)
         {
             lightingInterface.QueryID((int)QueryIDNumeric.Value);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataTitlelbl.Text = ((sender as ListBox).SelectedItem as dataLog).Title;
+            dataDescriptionTextBox.Text = ((sender as ListBox).SelectedItem as dataLog).Description;
+
+            if (((sender as ListBox).SelectedItem as dataLog).ToPC != null)
+                dataTextBox.Text = BitConverter.ToString( ((sender as ListBox).SelectedItem as dataLog).ToPC);
+            if (((sender as ListBox).SelectedItem as dataLog).FromPC != null)
+                dataTextBox.Text = BitConverter.ToString(((sender as ListBox).SelectedItem as dataLog).FromPC);
+        }
+
+        private void dataTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
