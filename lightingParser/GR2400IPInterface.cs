@@ -85,15 +85,90 @@ namespace lightingParser
 
             if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x46, 0x38, 0x30, 0x31, 0x43, 0x31, 0x46, 0x42, 0x0D }))
             {
-                logEntry.Title = "Heartbeat";
+                logEntry.Title = "Heartbeat 1";
                 logEntry.Description = "Heartbeat from GR2400 system";
             }
 
-            if (checkForMatch(receiveBytes,new byte[4] { 0x33, 0x38, 0x30, 0x34},0))
+            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33,0x42, 0x30, 0x34, 0x46, 0x38, 0x30, 0x31, 0x43, 0x31, 0x46, 0x39, 0x0D}))
+            {
+                logEntry.Title = "Heartbeat 2";
+                logEntry.Description = "Heartbeat from GR2400 system";
+            }
+
+            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x30, 0x38, 0x30, 0x30, 0x31, 0x43, 0x30, 0x37, 0x43, 0x0D }))
+            {
+                logEntry.Title = "Heartbeat 3";
+                logEntry.Description = "Heartbeat from GR2400 system";
+            }
+
+            //FIX: Also caught by device scanning
+            if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x30, 0x30, 0x30, 0x30 }, 0))
+            {
+                logEntry.Title = "Negative";
+                logEntry.Description = "Negative response, may be specific to device scanning.";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[3] { 0x33, 0x38, 0x30},0))
+            {
+                logEntry.Title = "LCD Text";
+                logEntry.Description = "LCD Text";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[4] { 0x33, 0x46, 0x30, 0x45 }, 0))
             {
                 logEntry.Title = "Device found";
                 logEntry.Description = "Device of some sort has been detected.";
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x31, 0x30, 0x30 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 6 Btn Swtch";
+                    logEntry.Description = "6 Button Chelsea Switch";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x30 }, 0))
+                {
+                    logEntry.Title = "Scan Response - Continuation";
+                    logEntry.Description = "ID occupied by the previously detected panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x31 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 8 Chnl Panel";                  
+                    logEntry.Description = "8 Channel Panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x32 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 16 Chnl Panel";
+                    logEntry.Description = "16 Channel Panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x33 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 24 Chnl Panel";
+                    logEntry.Description = "24 Channel Panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x34 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 32 Chnl Panel";
+                    logEntry.Description = "32 Channel Panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x35 }, 0))
+                {
+                    logEntry.Title = "Scan Response - 40 Chnl Panel";
+                    logEntry.Description = "40 Channel Panel";
+                }
+
+                if (checkForMatch(receiveBytes, new byte[14] { 0x33, 0x46, 0x30, 0x45, 0x33, 0x30, 0x36, 0x33, 0x31, 0x30, 0x31, 0x31, 0x42, 0x0d }, 0))
+                {
+                    logEntry.Title = "Scan Response - 48 Chnl Panel";
+                    logEntry.Description = "48 Channel Panel";
+                }
             }
+
+
 
             LightingDataLog.Add(logEntry);
             u.BeginReceive(new AsyncCallback(OnNewMessage), ((UdpState)(ar.AsyncState)));

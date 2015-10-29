@@ -189,6 +189,7 @@ namespace lightingParser
         private void QueryIDBtn_Click(object sender, EventArgs e)
         {
             lightingInterface.QueryID((int)QueryIDNumeric.Value);
+            QueryIDNumeric.Value++;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -197,9 +198,9 @@ namespace lightingParser
             dataDescriptionTextBox.Text = ((sender as ListBox).SelectedItem as dataLog).Description;
 
             if (((sender as ListBox).SelectedItem as dataLog).ToPC != null)
-                dataTextBox.Text = BitConverter.ToString( ((sender as ListBox).SelectedItem as dataLog).ToPC);
+                dataTextBox.Text = BitConverter.ToString(((sender as ListBox).SelectedItem as dataLog).ToPC) + Environment.NewLine + Environment.NewLine + System.Text.Encoding.ASCII.GetString(((sender as ListBox).SelectedItem as dataLog).ToPC);
             if (((sender as ListBox).SelectedItem as dataLog).FromPC != null)
-                dataTextBox.Text = BitConverter.ToString(((sender as ListBox).SelectedItem as dataLog).FromPC);
+                dataTextBox.Text = BitConverter.ToString(((sender as ListBox).SelectedItem as dataLog).FromPC) + Environment.NewLine + Environment.NewLine + System.Text.Encoding.ASCII.GetString(((sender as ListBox).SelectedItem as dataLog).FromPC);
         }
 
         private void dataTextBox_TextChanged(object sender, EventArgs e)
