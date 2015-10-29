@@ -83,7 +83,7 @@ namespace lightingParser
 
             dataLog logEntry = new dataLog(null, receiveBytes, "Unknown", "Unknown");
 
-            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x30, 0x30, 0x30, 0x31, 0x43, 0x30, 0x30, 0x32, 0x0D }))
+            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x46, 0x38, 0x30, 0x31, 0x43, 0x31, 0x46, 0x42, 0x0D }))
             {
                 logEntry.Title = "Heartbeat";
                 logEntry.Description = "Heartbeat from GR2400 system";
