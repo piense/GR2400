@@ -44,7 +44,12 @@
             this.dataTitlelbl = new System.Windows.Forms.Label();
             this.dataTextBox = new System.Windows.Forms.TextBox();
             this.dataDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.QueryRelayBtn = new System.Windows.Forms.Button();
+            this.RelayQueryIDNumeric = new System.Windows.Forms.NumericUpDown();
+            this.RelayNumeric = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -209,11 +214,63 @@
             this.dataDescriptionTextBox.Size = new System.Drawing.Size(404, 178);
             this.dataDescriptionTextBox.TabIndex = 19;
             // 
+            // QueryRelayBtn
+            // 
+            this.QueryRelayBtn.Location = new System.Drawing.Point(623, 552);
+            this.QueryRelayBtn.Name = "QueryRelayBtn";
+            this.QueryRelayBtn.Size = new System.Drawing.Size(75, 23);
+            this.QueryRelayBtn.TabIndex = 20;
+            this.QueryRelayBtn.Text = "Query Relay";
+            this.QueryRelayBtn.UseVisualStyleBackColor = true;
+            this.QueryRelayBtn.Click += new System.EventHandler(this.QueryRelayBtn_Click);
+            // 
+            // RelayQueryIDNumeric
+            // 
+            this.RelayQueryIDNumeric.Location = new System.Drawing.Point(623, 581);
+            this.RelayQueryIDNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.RelayQueryIDNumeric.Name = "RelayQueryIDNumeric";
+            this.RelayQueryIDNumeric.Size = new System.Drawing.Size(120, 20);
+            this.RelayQueryIDNumeric.TabIndex = 21;
+            this.RelayQueryIDNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // RelayNumeric
+            // 
+            this.RelayNumeric.Location = new System.Drawing.Point(765, 581);
+            this.RelayNumeric.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.RelayNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.RelayNumeric.Name = "RelayNumeric";
+            this.RelayNumeric.Size = new System.Drawing.Size(120, 20);
+            this.RelayNumeric.TabIndex = 22;
+            this.RelayNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 752);
+            this.Controls.Add(this.RelayNumeric);
+            this.Controls.Add(this.RelayQueryIDNumeric);
+            this.Controls.Add(this.QueryRelayBtn);
             this.Controls.Add(this.dataDescriptionTextBox);
             this.Controls.Add(this.dataTextBox);
             this.Controls.Add(this.dataTitlelbl);
@@ -234,6 +291,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +316,9 @@
         private System.Windows.Forms.Label dataTitlelbl;
         private System.Windows.Forms.TextBox dataTextBox;
         private System.Windows.Forms.TextBox dataDescriptionTextBox;
+        private System.Windows.Forms.Button QueryRelayBtn;
+        private System.Windows.Forms.NumericUpDown RelayQueryIDNumeric;
+        private System.Windows.Forms.NumericUpDown RelayNumeric;
     }
 }
 

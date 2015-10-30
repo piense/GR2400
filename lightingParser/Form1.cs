@@ -195,7 +195,7 @@ namespace lightingParser
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataTitlelbl.Text = ((sender as ListBox).SelectedItem as dataLog).Title;
-            dataDescriptionTextBox.Text = ((sender as ListBox).SelectedItem as dataLog).Description;
+            dataDescriptionTextBox.Text = ((sender as ListBox).SelectedItem as dataLog).Description + " - " +  ((sender as ListBox).SelectedItem as dataLog).Time.ToString();
 
             if (((sender as ListBox).SelectedItem as dataLog).ToPC != null)
                 dataTextBox.Text = BitConverter.ToString(((sender as ListBox).SelectedItem as dataLog).ToPC) + Environment.NewLine + Environment.NewLine + System.Text.Encoding.ASCII.GetString(((sender as ListBox).SelectedItem as dataLog).ToPC);
@@ -206,6 +206,12 @@ namespace lightingParser
         private void dataTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void QueryRelayBtn_Click(object sender, EventArgs e)
+        {
+            lightingInterface.QueryRelay((int)RelayQueryIDNumeric.Value,(int) RelayNumeric.Value - 1);
+            RelayNumeric.Value++;
         }
     }
 }

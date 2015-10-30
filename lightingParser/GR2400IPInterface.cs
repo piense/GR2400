@@ -17,6 +17,7 @@ namespace lightingParser
         public byte[] ToPC;
         public string Title;
         public string Description;
+        public DateTime Time;
         public dataLog(byte[] fromPC, byte[] toPC, string title, string description)
         {
             if (fromPC != null)
@@ -29,6 +30,7 @@ namespace lightingParser
                 ToPC = null;
             Title = title;
             Description = description;
+            Time = DateTime.Now;
         }
 
         public override string ToString()
@@ -101,11 +103,35 @@ namespace lightingParser
                 logEntry.Description = "Heartbeat from GR2400 system";
             }
 
+            if (receiveBytes.Length == 13 && receiveBytes.SequenceEqual(new byte[13] { 0x33, 0x42, 0x30, 0x36, 0x30, 0x30, 0x30, 0x31, 0x43, 0x30, 0x30, 0x32, 0x0D }))
+            {
+                logEntry.Title = "Heartbeat 4";
+                logEntry.Description = "Heartbeat from GR2400 system";
+            }
+
             //FIX: Also caught by device scanning
             if (checkForMatch(receiveBytes, new byte[7] { 0x33, 0x46, 0x30, 0x30, 0x30, 0x30, 0x30 }, 0))
             {
                 logEntry.Title = "Negative";
                 logEntry.Description = "Negative response, may be specific to device scanning.";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[8] { 0x33, 0x46, 0x30, 0x30, 0x31, 0x30, 0x31, 0x0D }, 0))
+            {
+                logEntry.Title = "Affirmative 1";
+                logEntry.Description = "A relay is probably on.";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[8] { 0x33, 0x46, 0x30, 0x32, 0x31, 0x32, 0x31, 0x0D }, 0))
+            {
+                logEntry.Title = "Affirmative 2";
+                logEntry.Description = "A relay is probably on (and it's the first one in the panel?)";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[8] { 0x33, 0x46, 0x30, 0x32, 0x30, 0x32, 0x30, 0x0D }, 0))
+            {
+                logEntry.Title = "Negative 2";
+                logEntry.Description = "Negative response (and it's the first relay in the panel?)";
             }
 
             if (checkForMatch(receiveBytes, new byte[3] { 0x33, 0x38, 0x30},0))
@@ -261,6 +287,15 @@ namespace lightingParser
                 Heartbaet: 3B06F801C1FB
              */
             return "";
+        }
+
+        public void QueryRelay(int id, int relay)
+        {
+            int id2 = id + (int)relay / 8;
+            int relay2 = relay % 8;
+            string ToSend = "3820" + (char)0x0d + "08" + id2.ToString("x2") + relay2.ToString("x2") + ((int)((8 + id2 + relay2) % 255)).ToString("x2") + (char)0x0d + (char)0x0a;
+
+            sendData(ToSend, "Query Relay " + id.ToString() + " - " + (relay+1).ToString(), "Query Relay " + id.ToString() + " - " + (relay+1).ToString());
         }
 
         private void beginListening()
