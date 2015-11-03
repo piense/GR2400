@@ -213,5 +213,34 @@ namespace lightingParser
             lightingInterface.QueryRelay((int)RelayQueryIDNumeric.Value,(int) RelayNumeric.Value - 1);
             RelayNumeric.Value++;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+                
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            RelayListView.Items.Clear();
+            foreach (RelayC r in lightingInterface.DiscoveredRelays.ToArray())
+            {
+                RelayListView.Items.Add(r.Id.ToString() + " - " + (r.Relay + 1).ToString());
+                if (r.RelayState == RelayStateT.Off)
+                    RelayListView.Items[RelayListView.Items.Count - 1].BackColor = Color.Red;
+                if (r.RelayState == RelayStateT.On)
+                    RelayListView.Items[RelayListView.Items.Count - 1].BackColor = Color.Green;
+                if (r.RelayState == RelayStateT.Unknown)
+                    RelayListView.Items[RelayListView.Items.Count - 1].BackColor = Color.Yellow;
+            }
+        }
+
+        private void BusScan_Tick(object sender, EventArgs e)
+        {
+            lightingInterface.QueryID((int)QueryIDNumeric.Value);
+            QueryIDNumeric.Value++;
+            if (QueryIDNumeric.Value == 40)
+                BusScan.Enabled = false;
+        }
     }
 }

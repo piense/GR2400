@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.ScrollUpBtn = new System.Windows.Forms.Button();
@@ -47,6 +48,9 @@
             this.QueryRelayBtn = new System.Windows.Forms.Button();
             this.RelayQueryIDNumeric = new System.Windows.Forms.NumericUpDown();
             this.RelayNumeric = new System.Windows.Forms.NumericUpDown();
+            this.RelayListView = new System.Windows.Forms.ListView();
+            this.RelayStatusRefresh = new System.Windows.Forms.Timer(this.components);
+            this.BusScan = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).BeginInit();
@@ -263,11 +267,32 @@
             0,
             0});
             // 
+            // RelayListView
+            // 
+            this.RelayListView.Location = new System.Drawing.Point(656, 39);
+            this.RelayListView.Name = "RelayListView";
+            this.RelayListView.Size = new System.Drawing.Size(616, 489);
+            this.RelayListView.TabIndex = 25;
+            this.RelayListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // RelayStatusRefresh
+            // 
+            this.RelayStatusRefresh.Enabled = true;
+            this.RelayStatusRefresh.Interval = 5000;
+            this.RelayStatusRefresh.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // BusScan
+            // 
+            this.BusScan.Enabled = true;
+            this.BusScan.Interval = 1000;
+            this.BusScan.Tick += new System.EventHandler(this.BusScan_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 752);
+            this.Controls.Add(this.RelayListView);
             this.Controls.Add(this.RelayNumeric);
             this.Controls.Add(this.RelayQueryIDNumeric);
             this.Controls.Add(this.QueryRelayBtn);
@@ -319,6 +344,9 @@
         private System.Windows.Forms.Button QueryRelayBtn;
         private System.Windows.Forms.NumericUpDown RelayQueryIDNumeric;
         private System.Windows.Forms.NumericUpDown RelayNumeric;
+        private System.Windows.Forms.ListView RelayListView;
+        private System.Windows.Forms.Timer RelayStatusRefresh;
+        private System.Windows.Forms.Timer BusScan;
     }
 }
 
