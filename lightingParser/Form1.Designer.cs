@@ -51,6 +51,8 @@
             this.RelayListView = new System.Windows.Forms.ListView();
             this.RelayStatusRefresh = new System.Windows.Forms.Timer(this.components);
             this.BusScan = new System.Windows.Forms.Timer(this.components);
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).BeginInit();
@@ -287,11 +289,33 @@
             this.BusScan.Interval = 1000;
             this.BusScan.Tick += new System.EventHandler(this.BusScan_Tick);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(996, 551);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(996, 591);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 752);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.RelayListView);
             this.Controls.Add(this.RelayNumeric);
             this.Controls.Add(this.RelayQueryIDNumeric);
@@ -347,6 +371,8 @@
         private System.Windows.Forms.ListView RelayListView;
         private System.Windows.Forms.Timer RelayStatusRefresh;
         private System.Windows.Forms.Timer BusScan;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

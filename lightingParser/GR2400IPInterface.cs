@@ -248,13 +248,25 @@ namespace lightingParser
                 }
             }
 
-            if (checkForMatch(receiveBytes, new byte[3] { 0x33, 0x38, 0x30},0))
+            if (checkForMatch(receiveBytes, new byte[6] { 0x33,0x46,0x30,0x45,0x34,0x0d},0))
+            {
+                logEntry.Title = "Parameter Change Accepted";
+                logEntry.Description = "Parameter Change Accepted";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[3] { 0x33,0x46,0x30 }, 0))
+            {
+                logEntry.Title = "Data from GR2400";
+                logEntry.Description = "Idk, haven't translated yet.";
+            }
+
+            if (checkForMatch(receiveBytes, new byte[3] { 0x33, 0x38, 0x30 }, 0))
             {
                 logEntry.Title = "LCD Text";
                 logEntry.Description = "LCD Text";
             }
 
-            if (checkForMatch(receiveBytes, new byte[4] { 0x33, 0x46, 0x30, 0x45 }, 0))
+            if (checkForMatch(receiveBytes, new byte[4] { 0x33, 0x46, 0x30, 0x45 }, 0) && receiveBytes.Length > 6)
             {
                 logEntry.Title = "Device found";
                 logEntry.Description = "Device of some sort has been detected.";
@@ -439,11 +451,24 @@ namespace lightingParser
             udpClient.BeginReceive(new AsyncCallback(OnNewMessage), s);
         }
 
+        public void changeParameter()
+        {
+            string ToSend = "3820" + (char)0x0d + "0e850c9f" + (char)0x0d + (char)0x0a;
+            sendData(ToSend, "Select Parameter", "Select Parameter");
+        }
+
+        public void requestData(){
+            string ToSend = "3820" + (char)0x0d + "0f80109f" + (char)0x0d + (char)0x0a;
+            sendData(ToSend, "Ask for Data", "Ask for Data");
+        }
+
+
+
         public GR2400IPInterface()
         {
             LightingDataLog = new BindingList<dataLog>();
             DiscoveredRelays = new List<RelayC>();
-            probingRelays = true;
+            probingRelays = false;
             beginListening();
         }
     }
