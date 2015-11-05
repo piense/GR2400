@@ -70,7 +70,7 @@ namespace lightingParser
         public MessageEventArgs(string message, byte[] messageBytes) { Message = message; MessageBytes = messageBytes; }
     }
 
-    enum LastQueryT { Relay, DeviceScan, LCD};
+    enum LastQueryT { Relay, DeviceScan, LCD, ParameterChange, ParameterGet, SelectBusID };
 
     public class GR2400IPInterface
     {
@@ -248,16 +248,27 @@ namespace lightingParser
                 }
             }
 
-            if (checkForMatch(receiveBytes, new byte[6] { 0x33,0x46,0x30,0x45,0x34,0x0d},0))
+            if (checkForMatch(receiveBytes, new byte[6] { 0x33,0x46,0x30,0x45,0x34,0x0d},0) && LastQuery == LastQueryT.ParameterChange)
             {
                 logEntry.Title = "Parameter Change Accepted";
                 logEntry.Description = "Parameter Change Accepted";
             }
 
-            if (checkForMatch(receiveBytes, new byte[3] { 0x33,0x46,0x30 }, 0))
+            //Request for panel name
+            if (checkForMatch(receiveBytes, new byte[3] { 0x33,0x46,0x30 }, 0) && receiveBytes.Length > 3 && LastQuery == LastQueryT.ParameterGet)
             {
                 logEntry.Title = "Data from GR2400";
                 logEntry.Description = "Idk, haven't translated yet.";
+                string ret = "";
+                for(int i = 0;i<(receiveBytes.Length-6)/2;i++)
+                {
+                    string char1b = Convert.ToChar(receiveBytes[(i * 2) + 3]).ToString();
+                    string char2b = Convert.ToChar(receiveBytes[(i * 2) + 3+1]).ToString();
+                    char newChar = Convert.ToChar(Convert.ToUInt16(char1b + char2b, 16));
+
+                    ret += newChar;
+                }
+                logEntry.Description = ret;
             }
 
             if (checkForMatch(receiveBytes, new byte[3] { 0x33, 0x38, 0x30 }, 0))
@@ -425,6 +436,27 @@ namespace lightingParser
             LastQuery = LastQueryT.Relay;
         }
 
+        public void changeGetID(int busID)
+        {
+            string ToSend = "3820" + (char)0x0d + "46" + busID.ToString("x2") + "200000" + ((int)((0x46 + 0x20 + busID) % 255)).ToString("x2") + (char)0x0d + (char)0x0a;
+            sendData(ToSend, "Select Bus ID " + busID.ToString(), "Select Bus ID " + busID.ToString());
+            LastQuery = LastQueryT.SelectBusID;
+        }
+
+        public void changeParameter(int relayID)
+        {
+            string ToSend = "3820" + (char)0x0d + "0e85" + relayID.ToString("x2") + ((int)((0x0e + 0x85 + relayID) % 255)).ToString("x2") + (char)0x0d + (char)0x0a;
+            sendData(ToSend, "Select Parameter", "Select Parameter");
+            LastQuery = LastQueryT.ParameterChange;
+        }
+
+        public void requestData()
+        {
+            string ToSend = "3820" + (char)0x0d + "0f80109f" + (char)0x0d + (char)0x0a;
+            sendData(ToSend, "Ask for Data", "Ask for Data");
+            LastQuery = LastQueryT.ParameterGet;
+        }
+
         private void beginListening()
         {
             // Receive a message and write it to the console.
@@ -451,16 +483,7 @@ namespace lightingParser
             udpClient.BeginReceive(new AsyncCallback(OnNewMessage), s);
         }
 
-        public void changeParameter()
-        {
-            string ToSend = "3820" + (char)0x0d + "0e850c9f" + (char)0x0d + (char)0x0a;
-            sendData(ToSend, "Select Parameter", "Select Parameter");
-        }
 
-        public void requestData(){
-            string ToSend = "3820" + (char)0x0d + "0f80109f" + (char)0x0d + (char)0x0a;
-            sendData(ToSend, "Ask for Data", "Ask for Data");
-        }
 
 
 

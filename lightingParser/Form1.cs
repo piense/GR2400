@@ -245,12 +245,18 @@ namespace lightingParser
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            lightingInterface.changeParameter();
+            lightingInterface.changeParameter((int)nameIDslider.Value);
+            nameIDslider.Value++;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             lightingInterface.requestData();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            lightingInterface.changeGetID((int)busIDNumeric.Value);
         }
     }
 }

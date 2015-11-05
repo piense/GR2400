@@ -53,9 +53,14 @@
             this.BusScan = new System.Windows.Forms.Timer(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.nameIDslider = new System.Windows.Forms.NumericUpDown();
+            this.button4 = new System.Windows.Forms.Button();
+            this.busIDNumeric = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameIDslider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busIDNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -285,35 +290,91 @@
             // 
             // BusScan
             // 
-            this.BusScan.Enabled = true;
             this.BusScan.Interval = 1000;
             this.BusScan.Tick += new System.EventHandler(this.BusScan_Tick);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(996, 551);
+            this.button2.Location = new System.Drawing.Point(961, 581);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(110, 23);
             this.button2.TabIndex = 26;
-            this.button2.Text = "button2";
+            this.button2.Text = "Select Param";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(996, 591);
+            this.button3.Location = new System.Drawing.Point(961, 612);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(110, 23);
             this.button3.TabIndex = 27;
-            this.button3.Text = "button3";
+            this.button3.Text = "Ask for Data";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // nameIDslider
+            // 
+            this.nameIDslider.Location = new System.Drawing.Point(1077, 584);
+            this.nameIDslider.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nameIDslider.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nameIDslider.Name = "nameIDslider";
+            this.nameIDslider.Size = new System.Drawing.Size(120, 20);
+            this.nameIDslider.TabIndex = 28;
+            this.nameIDslider.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(961, 552);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(110, 23);
+            this.button4.TabIndex = 29;
+            this.button4.Text = "Select Bus ID";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // busIDNumeric
+            // 
+            this.busIDNumeric.Location = new System.Drawing.Point(1077, 552);
+            this.busIDNumeric.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.busIDNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.busIDNumeric.Name = "busIDNumeric";
+            this.busIDNumeric.Size = new System.Drawing.Size(120, 20);
+            this.busIDNumeric.TabIndex = 30;
+            this.busIDNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 752);
+            this.Controls.Add(this.busIDNumeric);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.nameIDslider);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.RelayListView);
@@ -342,6 +403,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.QueryIDNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayQueryIDNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RelayNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameIDslider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busIDNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,6 +436,9 @@
         private System.Windows.Forms.Timer BusScan;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.NumericUpDown nameIDslider;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.NumericUpDown busIDNumeric;
     }
 }
 
